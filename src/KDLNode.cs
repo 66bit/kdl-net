@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -39,7 +40,21 @@ namespace KdlDotNet
         public string? Type { get; }
         public IReadOnlyDictionary<string, KDLValue> Props { get; }
         public IReadOnlyList<KDLValue> Args { get; }
-        public KDLDocument? Child { get; }
+        public KDLDocument? Child { get; set; }
+
+        public void AddChildNode(KDLNode node)
+        {
+            Child ??= new KDLDocument();
+            Child.Nodes.Add(node);
+        }
+
+        public void RemoveChildNode(KDLNode node)
+        {
+            if (Child == null)
+                throw new InvalidOperationException("Cannot remove child node because Child is null");
+
+            Child.Nodes.Remove(node);
+        }
 
         /**
          * Writes a text representation of the node to the provided writer
@@ -85,7 +100,7 @@ namespace KdlDotNet
             for (int i = 0; i < keys.Count; i++)
             {
                 var value = Props[keys[i]];
-                if (value != KDLNull.Instance|| printConfig.PrintNullProps)
+                if (value != KDLNull.Instance || printConfig.PrintNullProps)
                 {
                     PrintUtil.WriteStringQuotedAppropriately(writer, keys[i], true, printConfig);
                     writer.Write('=');
@@ -131,7 +146,7 @@ namespace KdlDotNet
                 int hash = 17;
                 hash = hash * 23 + Identifier.GetHashCode();
 
-                if(Type != null)
+                if (Type != null)
                     hash = hash * 23 + Type.GetHashCode();
 
                 foreach (var prop in Props)
@@ -140,7 +155,7 @@ namespace KdlDotNet
                 foreach (var arg in Args)
                     hash = hash * 23 + arg.GetHashCode();
 
-                if(Child != null)
+                if (Child != null)
                     hash = hash * 23 + Child.GetHashCode();
 
                 return hash;
