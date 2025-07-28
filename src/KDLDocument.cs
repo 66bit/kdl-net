@@ -15,15 +15,15 @@ namespace KdlDotNet
     {
         public KDLDocument(IReadOnlyList<KDLNode> nodes)
         {
-            Nodes = nodes;
+            Nodes = new List<KDLNode>(nodes);
         }
 
         public KDLDocument(params KDLNode[] nodes)
         {
-            Nodes = nodes; // normally would want to defensive copy here in case nodes is mutated externally, but "params" is compiler-generated and can't be modified
+            Nodes = new List<KDLNode>(nodes);
         }
 
-        public IReadOnlyList<KDLNode> Nodes { get; }
+        public List<KDLNode> Nodes { get; }
 
         public void WriteKDL(StreamWriter writer, PrintConfig printConfig)
         {
@@ -105,12 +105,12 @@ namespace KdlDotNet
          */
         public static KDLDocument Empty => new KDLDocument(new List<KDLNode>(0));
 
-        public override string ToString() => "KDLDocument{nodes=" + NodesToString(Nodes) +"}";
+        public override string ToString() => "KDLDocument{nodes=" + NodesToString(Nodes) + "}";
 
         private static string NodesToString(IEnumerable<KDLNode> nodes)
         {
             var sb = new StringBuilder();
-            foreach(var node in nodes)
+            foreach (var node in nodes)
             {
                 if (sb.Length != 0)
                     sb.Append(",");
@@ -133,7 +133,7 @@ namespace KdlDotNet
             unchecked
             {
                 int hash = 17;
-                foreach(var node in Nodes)
+                foreach (var node in Nodes)
                     hash = hash * 23 + node.GetHashCode();
                 return hash;
             }
