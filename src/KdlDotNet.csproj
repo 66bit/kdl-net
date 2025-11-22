@@ -1,21 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>KdlDotNet</RootNamespace>
     <LangVersion>8.0</LangVersion>
-    <AssemblyName>KdlDotNet</AssemblyName>
-
-    <PackageVersion>1.1.0</PackageVersion>
-    <AssemblyVersion>1.1.0</AssemblyVersion>
-    <FileVersion>1.1.0</FileVersion>
-    <Version>1.1.0</Version>
-    <Authors>Orion Edwards</Authors>
-    <Company />
+    <PackageId>66bit.KdlDotNet</PackageId>
+    <Version>1.1.1</Version>
+	 
     <PackageLicenseExpression>CC-BY-4.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/borland/kdl-net</PackageProjectUrl>
-    <Description>C# Implementation of a parser for the KDL Document Language.</Description>
-    <Copyright>Orion Edwards 2021</Copyright>
+    <PackageProjectUrl>https://github.com/66bit/kdl-net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/66bit/kdl-net</RepositoryUrl>
+    <Description>Fork of 'kdl-net' by Orion Edwards. C# Implementation of a parser for the KDL Document Language.</Description>
+    <Authors>Orion Edwards</Authors>
+    <Company>66bit</Company>
   </PropertyGroup>
 
   <ItemGroup>

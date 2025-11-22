@@ -1,3 +1,13 @@
+## 66bit.KdlDotNet
+
+This is a fork of [kdl-net](https://github.com/borland/kdl-net) that adds support for editing KDL documents.
+
+## Changes
+
+This fork adds the ability to modify `KDLDocument`, including adding and removing child nodes.
+
+---
+
 ## KdlDotNet
 
 This is a C# implementation of a parser for the [KDL Document Language](https://github.com/kdl-org/kdl).
